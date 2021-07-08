@@ -32,22 +32,14 @@ What is the average daily activity pattern?
 Imputing missing values
 Are there differences in activity patterns between weekdays and weekends?
 
+
 ##Step 1
-##Setting the working directory
-
-```{r, echo = TRUE}
-setwd("C:/Users/SHIH/Desktop/Reproducible Research")
-if(!file.exists("./Project1")){dir.create("./Project1")}
-```
-
-
-##Step 2
 ##Code for reading and processing the data
 
 ```{r, echo = TRUE}
 library(ggplot2)
 
-activity <- read.csv("./data/activity.csv")
+activity <- read.csv("./activity.csv")
 
 activity$date <- as.POSIXct(activity$date, "%Y-%m-%d")
 weekday <- weekdays(activity$date)
@@ -56,7 +48,7 @@ activity <- cbind(activity,weekday)
 summary(activity)
 ```
 
-##Step 3
+##Step 2
 ##Q1: What is mean total number of steps taken per day?
 
 1. What is mean total number of steps taken per day?
@@ -69,7 +61,7 @@ hist(activity_total_steps$steps, main = "Total number of steps taken per day", x
 ```
 
 
-##Step 4
+##Step 3
 ##Mean and median number of steps taken each day
 
 Here is the mean of the total number of steps taken per day:
@@ -85,7 +77,7 @@ median(activity_total_steps$steps)
 ```
 
 
-##Step 5
+##Step 4
 ##Q2: What is the average daily activity pattern?
 
 2. What is the average daily activity pattern?
@@ -103,7 +95,7 @@ average_daily_activity[which.max(average_daily_activity$mean), ]$interval
 ```
 
 
-##Step 6
+##Step 5
 ##Q3: Imputing missing values
 
 3. Imputing missing values
@@ -134,7 +126,7 @@ total_steps_imputed <- aggregate(steps ~ date, activity_imputed, sum)
 names(total_steps_imputed) <- c("date", "daily_steps")
 ```
 
-## Step 7
+## Step 6
 Histogram of the total number of steps taken each day after missing values are imputed
 
 ```{r, echo = TRUE}
@@ -154,7 +146,7 @@ median(total_steps_imputed$daily_steps)
 ```
 
 
-##Step 8
+##Step 7
 ##Q4: Are there differences in activity patterns between weekdays and weekends?
 
 4. Are there differences in activity patterns between weekdays and weekends?
